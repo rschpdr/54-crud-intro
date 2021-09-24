@@ -6,6 +6,8 @@ import Navbar from "./Navbar";
 import CharacterList from "./characters/CharacterList";
 import CharacterDetails from "./characters/CharacterDetails";
 import CharacterCreate from "./characters/CharacterCreate";
+import CharacterUpdate from "./characters/CharacterUpdate";
+import CharacterDelete from "./characters/CharacterDelete";
 
 function App() {
   return (
@@ -15,6 +17,16 @@ function App() {
         <Route exact path="/" component={CharacterList} />
         <Switch>
           <Route exact path="/character/create" component={CharacterCreate} />
+          <Route
+            exact
+            path="/character/update/:id"
+            component={CharacterUpdate}
+          />
+          <Route
+            exact
+            path="/character/delete/:id"
+            component={CharacterDelete}
+          />
           <Route path="/character/:id" component={CharacterDetails} />
         </Switch>
       </div>

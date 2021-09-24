@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+
+import ConfirmationModal from "../ConfirmationModal";
 
 function CharacterDetails(props) {
   const [characterInfo, setCharacterInfo] = useState({
@@ -10,6 +13,17 @@ function CharacterDetails(props) {
     cartoon: null,
     picture: "",
   });
+  const [showModal, setShowModal] = useState(false);
+
+  const history = useHistory();
+
+  function handleModalOpen() {
+    setShowModal(true);
+  }
+
+  function handleModalClose() {
+    setShowModal(false);
+  }
 
   useEffect(() => {
     axios
@@ -46,6 +60,37 @@ function CharacterDetails(props) {
         <strong>Is this character from a cartoon?: </strong>
         {characterInfo.cartoon ? "Yes" : "No"}
       </p>
+
+      <div>
+        <Link
+          className="me-3"
+          title="Edit"
+          to={`/character/update/${characterInfo.id}`}
+        >
+          <i className="fas fa-edit"></i> Edit
+        </Link>
+
+        {/* QUando o usuário clicar no botão de deletar, abrimos o modal de confirmação */}
+        <a
+          href="/"
+          className="text-danger"
+          onClick={(event) => {
+            event.preventDefault();
+            handleModalOpen();
+          }}
+        >
+          <i class="fas fa-trash-alt"></i> Delete
+        </a>
+      </div>
+
+      {/* No modal de confirmação, se o usuário fechar, nada acontece. Caso ele clique no botão "Delete", redirecionar para a rota de deleção */}
+      <ConfirmationModal
+        show={showModal}
+        handleClose={handleModalClose}
+        handleAction={() =>
+          history.push(`/character/delete/${characterInfo.id}`)
+        }
+      />
     </div>
   );
 }
