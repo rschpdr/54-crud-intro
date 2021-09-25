@@ -5,7 +5,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-primary">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          CharactersApp
+          Web Dev é melhor que UX
         </NavLink>
         <button
           className="navbar-toggler"
