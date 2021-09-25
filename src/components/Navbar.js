@@ -5,7 +5,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-primary">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          CharactersApp
+          Characterify
         </NavLink>
         <button
           className="navbar-toggler"
